@@ -1,0 +1,16 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.service.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "moleculer": "^0.13.12",
+    "moleculer-io": "^1.1.3",
+    "moleculer-web": "^0.8.5"
+  },
+  "author": "",
+  "license": "ISC"
+}

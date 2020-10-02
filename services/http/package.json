@@ -1,0 +1,16 @@
+{
+  "name": "http",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.service.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "moleculer": "^0.13.12",
+    "moleculer-http-client": "^0.3.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

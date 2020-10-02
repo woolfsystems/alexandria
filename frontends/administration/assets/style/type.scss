@@ -1,0 +1,21 @@
+@use 'config' as config;
+
+h1,
+h2,
+h3,
+h4{
+    font-family: config.$typeFontHeading;
+    font-weight: normal;
+}
+h1{
+    font-size: 2.5em;
+    color: #222;
+}
+h2{
+    font-size: 2em;
+    color: #333;
+}
+body {
+    font-family: config.$typeFontBody;
+    font-size: 20px;
+}

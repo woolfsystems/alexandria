@@ -1,0 +1,25 @@
+// @use 'node_modules/carbon-components/scss/globals/scss/styles.scss';
+@use 'reset';
+@use 'fonts';
+@use 'type';
+
+body {
+    background-color: #eee;
+    color: #111;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+body[loading]{
+    opacity: 0;
+}
+
+.transparent {
+    opacity: 0;
+}
+
+.from-transparent {
+    opacity: 1;
+}
+html{
+    font-size: 1vw;
+}

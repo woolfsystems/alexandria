@@ -1,0 +1,66 @@
+{
+  "name": "@woolfsystems/alexandria",
+  "version": "1.0.0",
+  "description": "Beautifully simple book scanning",
+  "main": "core/broker/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "parcel:build": "echo \"Building './${npm_package_alias_frontends}/${npm_package_alias_admin}/index.html' => '${npm_package_alias_build}/${npm_package_alias_admin}'\" && npx parcel build ./${npm_package_alias_frontends}/${npm_package_alias_admin}/*.html -d ./${npm_package_alias_build}/${npm_package_alias_admin}",
+    "parcel:watch": "echo \"Watching './${npm_package_alias_frontends}/${npm_package_alias_admin}/index.html' => '${npm_package_alias_build}/${npm_package_alias_admin}'\" && npx parcel watch ./${npm_package_alias_frontends}/${npm_package_alias_admin}/*.html -d ./${npm_package_alias_build}/${npm_package_alias_admin}",
+    "clean:frontend": "echo \"Cleaning './${npm_package_alias_build}/${npm_package_alias_admin}'\" && rm -rf ./${npm_package_alias_build}/${npm_package_alias_admin}/* || mkdir -p ./${npm_package_alias_build}/${npm_package_alias_admin}",
+    "watch:frontend": "npm run parcel:watch",
+    "build:frontend": "npm run clean:frontend && npm run parcel:build",
+    "bloop": "env",
+    "dust:start": "node core/broker/index.js"
+  },
+  "dependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "@carbon/icons-react": "^10.8.2",
+    "assets": "^3.0.1",
+    "bluebird": "^3.7.2",
+    "carbon-components": "^10.9.3",
+    "carbon-icons": "^7.0.7",
+    "dotenv": "^8.2.0",
+    "module-alias": "^2.2.2",
+    "moleculer": "^0.13.12",
+    "socket.io-client": "^2.3.0",
+    "svgxuse": "^1.2.6"
+  },
+  "devDependencies": {
+    "core-js": "^3",
+    "cssnano": "^4.1.10",
+    "lerna": "^3.20.2",
+    "sass": "^1.24.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woolfsystems/alexandria.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/woolfsystems/alexandria/issues"
+  },
+  "homepage": "https://github.com/woolfsystems/alexandria#readme",
+  "alias": {
+    "admin": "administration",
+    "frontends": "frontends",
+    "build": "dist"
+  },
+  "_moduleAliases": {
+    "@lib": "libs",
+    "@model": "models",
+    "@services": "services",
+    "@core": "core",
+    "@frontends": "frontends"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "engines": {
+    "node": ">=12.0"
+  }
+}

@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'OTexta Heavy';
+    src: local('Texta Heavy'), url(~/assets/fonts/Texta/latinotype_-_texta-heavy-webfont.woff2) format('woff2'),
+            url(~/assets/fonts/Texta/latinotype_-_texta-heavy-webfont.woff) format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'OTexta Regular';
+    src: local('Texta'), local('Texta Regular'), url(~/assets/fonts/Texta/latinotype_-_texta-regular-webfont.woff2) format('woff2'),
+            url(~/assets/fonts/Texta/latinotype_-_texta-regular-webfont.woff) format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
