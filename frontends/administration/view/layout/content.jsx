@@ -5,7 +5,6 @@ import '~/assets/style/layout/content.scss'
 
 import { Router, routes } from '~/src/routes.js'
 import MenuList from '~/view/component/menulist.jsx'
-import Quasi from '~/view/component/quasi.jsx'
 
 const Rar = ({location}) => (<Router url={location.pathname} state={location.state} />)
 

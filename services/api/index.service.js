@@ -47,7 +47,7 @@ module.exports = {
 						},
 						'clientCall': {
 							whitelist: [
-								'postcode.*',
+								'collections.*',
 								'client.*',
 								'$node.*'
 							],
@@ -163,6 +163,7 @@ module.exports = {
 					"auth.*",
 					"file.*",
 					"test.*",
+					"collections.*",
 				],
 				authorization: false,
 				camelCaseNames: true,

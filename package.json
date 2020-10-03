@@ -25,6 +25,7 @@
     "dotenv": "^8.2.0",
     "module-alias": "^2.2.2",
     "moleculer": "^0.13.12",
+    "moleculer-db": "^0.8.10",
     "socket.io-client": "^2.3.0",
     "svgxuse": "^1.2.6"
   },

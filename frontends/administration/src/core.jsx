@@ -145,7 +145,13 @@ export default class extends React.Component {
         this.socket.on('connect', () => {
             console.log('[WS]', 'connected')
             try{
-    
+                this.call('collections.create', { meta: {author: 'dave', title: 'life'} })().then(_r => {
+                    console.log('=>','[call]', _r)
+                }).catch(_e => {
+                    console.error('=>','[call]', _e)
+                })
+                this.call('collections.find')().then(_dc=>console.log('DC',_dc))
+
             }catch(_e){
                 console.log('[CALL]',_e)
             }
