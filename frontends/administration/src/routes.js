@@ -10,7 +10,7 @@ import ExportView from '~/view/page/export.jsx'
 import SettingsView from '~/view/page/settings.jsx'
 
 const SITE_TITLE = 'alexandria'
-const SITE_URL = 'http://localhost:4000'
+const SITE_URL = ':4000'
 
 const routes = [
     ['overview', {pathname: '/'}, RootView],

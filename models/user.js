@@ -1,9 +1,7 @@
 const roles = require('@model/role')
 
 class User {
-	id = undefined
-	data = { }
-	type = undefined
+	
 
 	constructor({id, type, data}){
         if(!Object.values(roles).includes(type))

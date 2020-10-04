@@ -83,7 +83,7 @@ export default class extends React.Component {
     }
     connectIO() {
         try{
-            this.socket = io('localhost:4000', {
+            this.socket = io(':4000', {
                 reconnection: true,
             })
         
