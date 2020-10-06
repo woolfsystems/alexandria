@@ -50,7 +50,7 @@ view-layer#content {
             position: relative;    
             legend {
                 top: 1em;
-                color: #eee;
+                color: #000;
                 z-index: 10;
                 position: absolute;
                 text-shadow: pink 0 0 5px;
@@ -79,7 +79,13 @@ view-layer#content {
     }
     &> footer {
         grid-area: base;
-        color: #444;
+        color: #666;
+        text-align: right;
+
+        & sup {
+            font-size: 0.6em;
+            color: #000;
+        }
     }
 }
 
@@ -110,7 +116,7 @@ figure {
 @media screen and (min-width: 1280px) {
     view-layer#content > hgroup > ol {
         grid-auto-flow: row;
-        & li {
+        & a {
             border-right: none;
         }
     }

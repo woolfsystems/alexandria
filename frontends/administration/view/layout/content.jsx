@@ -30,7 +30,7 @@ export default class extends React.Component {
                 <Route component={Rar} />
             </section>
             <footer>
-                <span>libreflip &copy; 2020</span>
+                <span>libreflip <sup>&copy; 2020</sup></span>
             </footer>
         </view-layer>)
     }

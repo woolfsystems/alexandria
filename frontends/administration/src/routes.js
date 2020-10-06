@@ -7,6 +7,7 @@ import RootView  from '~/view/page/root.jsx'
 import JobsView from '~/view/page/jobs.jsx'
 import CollectionsView from '~/view/page/collections.jsx'
 import ExportView from '~/view/page/export.jsx'
+import DebugView from '~/view/page/debug.jsx'
 import SettingsView from '~/view/page/settings.jsx'
 
 const SITE_TITLE = 'alexandria'
@@ -14,9 +15,10 @@ const SITE_URL = ':4000'
 
 const routes = [
     ['overview', {pathname: '/'}, RootView],
-    ['jobs', {pathname: '/jobs', state: {login: true}}, JobsView],
-    ['collections', '/collections', CollectionsView],
+    ['scan', {pathname: '/jobs', state: {login: true}}, JobsView],
+    ['process', '/collections', CollectionsView],
     ['export', '/export', ExportView],
+    ['diagnostic', '/debug', DebugView],
     ['settings', {
         key: 'login',
         state: {
