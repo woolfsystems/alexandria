@@ -1,0 +1,14 @@
+[Unit]
+Description=Alexandria - beautifully simple book scanning
+Documentation=https://libreflip.org
+After=network.target
+
+[Service]
+Environment=NODE_PORT=80
+Type=simple
+User=pi
+ExecStart=/srv/alexandria/system/run.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

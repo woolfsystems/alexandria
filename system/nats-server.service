@@ -1,0 +1,9 @@
+[Unit]
+Description=NATS server
+
+[Service]
+ExecStart=/usr/local/bin/nats-server
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
