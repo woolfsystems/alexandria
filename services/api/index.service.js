@@ -49,6 +49,7 @@ module.exports = {
 							whitelist: [
 								'collections.*',
 								'client.*',
+								'camera.*',
 								'$node.*'
 							],
 							callOptions: {

@@ -150,7 +150,8 @@ export default class extends React.Component {
                 }).catch(_e => {
                     console.error('=>','[call]', _e)
                 })
-                this.call('collections.find')().then(_dc=>console.log('DC',_dc))
+                this.call('camera.list')().then(_dc=>console.log('DC',_dc))
+                this.call('camera.capture')().then(_dc=>console.log('DC',_dc))
 
             }catch(_e){
                 console.log('[CALL]',_e)
