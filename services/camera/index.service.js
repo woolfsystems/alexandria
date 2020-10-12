@@ -6,7 +6,7 @@ const {PythonShell} = require('python-shell')
 let _capture_index = 1
 
 let python_options = {
-    mode: 'text',
+    mode: 'json',
     //pythonPath: 'path/to/python',
     //pythonOptions: ['-u'], // get print results in real-time
     scriptPath: `${__dirname}/tools/`,
@@ -34,7 +34,7 @@ module.exports = {
                     PythonShell.run('correct.py',python_options,(err,results)=>{
                         if(err)
                             reject(err)
-                        console.log('results: %j', results)
+                        this.logger.info('calibration data',results)
                         resolve(results)
                     })
                 })
@@ -54,6 +54,7 @@ module.exports = {
                         files.forEach((deviceName) => {
                             camera_devices.push(deviceName)
                         })
+                        this.logger.info('device data',camera_devices)
                         resolve(camera_devices)
                     })
                 })
@@ -66,11 +67,12 @@ module.exports = {
             },
             handler(ctx) {
                 return new this.Promise((resolve,reject)=>{
-                    cam.capture( `cap${String(_capture_index).padStart(4,'0')}`, function( err, data ) {
+                    let _tmp_file = `cap${String(_capture_index).padStart(4,'0')}`
+                    cam.capture( _tmp_file, function( err, data ) {
                         if(err)
-                            return reject(err   )
+                            return reject(err)
                         _capture_index++
-                        resolve()
+                        resolve(_tmp_file)
                     })
                 })
             }

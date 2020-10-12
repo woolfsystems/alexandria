@@ -3,6 +3,15 @@ import argparse
 import cv2
 import imutils
 
+import json
+from json import JSONEncoder
+
+class NumpyArrayEncoder(JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return JSONEncoder.default(self, obj)
+
 def order_points(pts):
 	# initialzie a list of coordinates that will be ordered
 	# such that the first entry in the list is the top-left,
@@ -52,7 +61,8 @@ def four_point_transform(image, pts):
 		[0, maxHeight - 1]], dtype = "float32")
 	# compute the perspective transform matrix and then apply it
 	M = cv2.getPerspectiveTransform(rect, dst)
-	print("TRANSFORM_MATRIX",M)
+	
+	print(json.dumps({'id':'transform_matrix', 'data': M}, cls=NumpyArrayEncoder))
 	warped = cv2.warpPerspective(image, M, (maxWidth, maxHeight))
 	# return the warped image
 	return warped
@@ -75,8 +85,7 @@ gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 gray = cv2.GaussianBlur(gray, (5, 5), 0)
 edged = cv2.Canny(gray, 75, 200)
 
-print("STEP 1: Edge Detection")
-# cv2.imshow("Image", image)
+	# cv2.imshow("Image", image)
 # cv2.imshow("Edged", edged)
 # cv2.waitKey(0)
 # cv2.destroyAllWindows()
@@ -94,16 +103,13 @@ for c in cnts:
 		screenCnt = approx
 		break
 
-print("STEP 2: Find contours of paper")
 cv2.drawContours(image, [screenCnt], -1, (0, 255, 0), 2)
 # cv2.imshow("Outline", image)
 # cv2.waitKey(0)
 # cv2.destroyAllWindows()
 
-print("CORNERS",screenCnt.reshape(4,2))
+print(json.dumps({'id':'edges', 'data': screenCnt.reshape(4,2)}, cls=NumpyArrayEncoder))
 warped = four_point_transform(orig, screenCnt.reshape(4, 2) * ratio)
-
-print("STEP 3: Apply perspective transform")
 
 #cv2.imshow("Original", imutils.resize(orig, height = 650))
 #cv2.imshow("Scanned", imutils.resize(warped, height = 650))

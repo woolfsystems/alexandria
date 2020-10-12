@@ -41,8 +41,8 @@ const authWrapper = (_pcall, _socket, _attempt_login) =>
     (_meta = {}) =>
         new Promise((resolve, reject) =>
             _pcall(_socket)
+                .then(_r=>resolve(_r))
                 .catch(login(_pcall, _socket, _attempt_login)))
-
 const socketCall = (_call, _meta) =>
     (_socket) =>
         new Promise((resolve, reject) =>
@@ -145,14 +145,10 @@ export default class extends React.Component {
         this.socket.on('connect', () => {
             console.log('[WS]', 'connected')
             try{
-                this.call('collections.create', { meta: {author: 'dave', title: 'life'} })().then(_r => {
-                    console.log('=>','[call]', _r)
-                }).catch(_e => {
-                    console.error('=>','[call]', _e)
-                })
-                this.call('camera.list')().then(_dc=>console.log('DC',_dc))
-                this.call('camera.capture')().then(_dc=>console.log('DC',_dc))
-                this.call('camera.orientation')().then(_dc=>console.log('DC',_dc))
+                this.call('collections.create', { meta: {author: 'dave', title: 'life'} })().then(_dc => console.log('[DC]', _dc))
+                this.call('camera.list')().then(_dc=>console.log('[DC]',_dc))
+                this.call('camera.capture')().then(_dc=>console.log('[DC]',_dc))
+                this.call('camera.orientation')().then(_dc=>console.log('[DC]',_dc)).catch(console.error)
             }catch(_e){
                 console.log('[CALL]',_e)
             }
@@ -197,6 +193,7 @@ export default class extends React.Component {
     return true
     }
     attemptLogin() {
+        console.info('[MODAL]','showing login')
         return new Promise((resolve, reject) =>
             this.showLogin()
                 .then(_v => {
