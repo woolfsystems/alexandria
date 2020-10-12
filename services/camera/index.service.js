@@ -1,21 +1,17 @@
 const {FSWebcam, capture} = require('node-webcam')
-const {ARToolkit,ARController} = require('artoolkit5-js')
 const path = require('path')
 const fs = require('fs')
-const Image = require('htmlimage')
+const {PythonShell} = require('python-shell')
 
-var _capture_index = 1
+let _capture_index = 1
 
-var i = new Image()
-i.onload = function() {
-  // do something with image.imageData.data (which is a pixel buffer)
- console.log('LOADED')
- ARController.initWithDimensions(1280,768, '/data/camera_para.dat')
-}
-i.onerror = function(err) {
-  // OHNOEZ!
-}
-i.src = `${__dirname}/cap01.png`
+let python_options = {
+    mode: 'text',
+    //pythonPath: 'path/to/python',
+    //pythonOptions: ['-u'], // get print results in real-time
+    scriptPath: `${__dirname}/tools/`,
+    args: ['-i',`${__dirname}/receipt001.jpg`]
+  };
 
 var cam = new FSWebcam({
     device: '/dev/video0',
@@ -35,35 +31,14 @@ module.exports = {
             },
             handler(ctx){
                 return new this.Promise((resolve,reject)=>{
-                    var param = new ARCameraParam();
-
-                    param.onload = function () {
-                      var img = document.getElementById('my-image');
-                      var ar = new ARController(img.width, img.height, param);
-                  
-                      // Set pattern detection mode to detect both pattern markers and barcode markers.
-                      // This is more error-prone than detecting only pattern markers (default) or only barcode markers.
-                      //
-                      // For barcode markers, use artoolkit.AR_MATRIX_CODE_DETECTION
-                      // For pattern markers, use artoolkit.AR_TEMPLATE_MATCHING_COLOR
-                      //
-                      ar.setPatternDetectionMode(artoolkit.AR_TEMPLATE_MATCHING_COLOR_AND_MATRIX);
-                  
-                      ar.addEventListener('markerNum', function (ev) {
-                        console.log('got markers', markerNum);
-                      });
-                      ar.addEventListener('getMarker', function (ev) {
-                        console.log('found marker?', ev);
-                      });
-                      ar.loadMarker('Data/patt.hiro', function (marker) {
-                        console.log('loaded marker', marker);
-                        ar.process(img);
-                      });
-                  };
-                  
-                    param.src = 'Data/camera_para.dat';
+                    PythonShell.run('correct.py',python_options,(err,results)=>{
+                        if(err)
+                            reject(err)
+                        console.log('results: %j', results)
+                        resolve(results)
+                    })
                 })
-            }
+            },
         },
         list: {
             params: {

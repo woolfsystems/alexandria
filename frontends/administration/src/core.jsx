@@ -152,7 +152,7 @@ export default class extends React.Component {
                 })
                 this.call('camera.list')().then(_dc=>console.log('DC',_dc))
                 this.call('camera.capture')().then(_dc=>console.log('DC',_dc))
-
+                this.call('camera.orientation')().then(_dc=>console.log('DC',_dc))
             }catch(_e){
                 console.log('[CALL]',_e)
             }
