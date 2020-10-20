@@ -22,7 +22,7 @@ import ModalView from '~/view/layout/modal.jsx'
 
 import { AuthenticationRejected } from '../lib/errors'
  
-
+window.sounds = 0
 let loop = 1
 
 const init = {
@@ -141,6 +141,24 @@ export default class extends React.Component {
         }
         
     }
+    getServices() {
+        return new Promise((resolve,reject)=>{
+            return this.call('$node.services')().then(_dc=>{                
+                let _filtered_services = _dc.filter(_ns=>typeof _ns.settings.task!=='undefined' && _ns.settings.task).reduce((_l,_v)=>{
+                    _l[_v.name] = {actions:[],..._v}
+                    return _l
+                },{})
+                return this.call('$node.actions')().then(_ac=>{
+                    _ac.forEach((_v)=>{
+                        let [_service_name,_action_name] = _v.name.split('.')
+                        if(typeof _filtered_services[_service_name]!=='undefined')
+                            _filtered_services[_service_name].actions[_action_name] = _v
+                    })
+                    return resolve(_filtered_services)
+                }).catch(reject)
+            }).catch(reject)
+        })
+    }
     setupIO() {
         this.socket.on('connect', () => {
             console.log('[WS]', 'connected')
@@ -149,6 +167,7 @@ export default class extends React.Component {
                 this.call('camera.list')().then(_dc=>console.log('[DC]',_dc))
                 this.call('camera.capture')().then(_dc=>console.log('[DC]',_dc))
                 this.call('camera.orientation')().then(_dc=>console.log('[DC]',_dc)).catch(console.error)
+                this.getServices().then(_dc=>console.log('[SERVICES]',_dc)).catch(console.error)
             }catch(_e){
                 console.log('[CALL]',_e)
             }

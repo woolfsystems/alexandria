@@ -23,7 +23,7 @@ export default class extends React.Component {
         return (
         <view-layer id="content">
             <hgroup>
-                <h1 className="textmetric--fit">alexandria</h1>
+                <h1>alexandria</h1>
                 <MenuList items={routes} />
             </hgroup>
             <section id="content">

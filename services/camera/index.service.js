@@ -24,6 +24,11 @@ var cam = new FSWebcam({
 module.exports = {
     name: 'camera',
     middlewares: [],
+    settings: {
+        task: true,
+        label: 'Camera Service',
+        methods: 'public'
+    },
     actions: {
         orientation: {
             params: {
